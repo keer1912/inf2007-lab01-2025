@@ -5,7 +5,16 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="lab01test">
+      <SelectionState runConfigName="mainScreenTest()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testGreetingAppearsOnSubmit()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testGreetingDoesNotAppearForBlankInput()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testGreetingUpdatesWithNewInput()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

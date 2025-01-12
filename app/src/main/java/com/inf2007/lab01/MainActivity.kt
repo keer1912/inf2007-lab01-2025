@@ -49,15 +49,13 @@ fun MainScreen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 UserInput(
-                    name = name,
-                    onNameChange = { name = it }
+                    name = username,
+                    onNameChange = { username = it }
                 )
 
                 Button(
                     onClick = {
-                        if (username.isNotBlank()) {
-                            showGreeting = false
-                        }
+                        showGreeting = username.isNotBlank()
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -67,13 +65,12 @@ fun MainScreen() {
                 }
 
                 if (showGreeting) {
-                    Greeeting(
+                    Greeting(
                         name = username,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 16.dp)
+                            .testTag("greetingMsg")
                     )
-
                 }
             }
         }
@@ -88,17 +85,15 @@ fun UserInput(name: String, onNameChange: (String) -> Unit, modifier: Modifier =
         label = { Text("Enter your Name") },
         modifier = modifier
             .fillMaxWidth()
-            .testTag("UserInput")
+            .testTag("nameInput")
     )
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $username!, Welcome to InF2007!",
-        modifier = Modifier
-            .fillMaxWidth()
-            .testTag("greeting")
+        text = "Hello $name!, Welcome to INF2007!",
+        modifier = modifier
     )
 }
 
@@ -107,3 +102,26 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     MainScreen()
 }
+//
+//Key Changes Made:
+//
+//Test Tag Corrections
+//kotlinCopy// Changed from .testTag("UserInput") to:
+//.testTag("nameInput")
+//// Added test tag for greeting:
+//.testTag("greetingMsg")
+//These changes ensure UI elements can be found by the test suite using the correct identifiers.
+//Logic Fix in Button Click
+//kotlinCopy// Changed from:
+//if (username.isNotBlank()) {
+//    showGreeting = false
+//}
+//// To:
+//showGreeting = username.isNotBlank()
+//This fixes the core logic - now it shows the greeting when there's text and hides it when empty.
+//Greeting Component Fix
+//kotlinCopy// Changed from:
+//text = "Hello $username!, Welcome to InF2007!"
+//// To:
+//text = "Hello $name!, Welcome to INF2007!"
+//This ensures the greeting uses the passed parameter instead of directly accessing the state.
